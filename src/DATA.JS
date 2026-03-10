@@ -29,10 +29,7 @@ export async function editPost(id, title, content) {
 }
 
 export async function DeletePost(id) {
-  const response = await fetch(`${URL_BASE}${id}/`, {
+  await fetch(`${URL_BASE}${id}/`, {
     method: "DELETE",
   });
-
-  const data = await response.json();
-  return data;
 }

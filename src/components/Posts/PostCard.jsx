@@ -1,7 +1,16 @@
 import { formatDistanceToNow } from "date-fns";
+import { DeletePost } from "../../DATA.JS";
 
-export function PostCard({ username, datetime, title, content }) {
-  const formattedDate = formatDistanceToNow(new Date(datetime), { addSuffix: true }).replace("about ", "");
+export function PostCard({ username, datetime, title, content, id }) {
+  const formattedDate = formatDistanceToNow(new Date(datetime), {
+    addSuffix: true,
+  }).replace("about ", "");
+
+  async function handlerDeletePost () {
+    await DeletePost(id)
+  }
+
+  
 
   return (
     <>
@@ -9,7 +18,7 @@ export function PostCard({ username, datetime, title, content }) {
         <header>
           <h3>{title}</h3>
           <div className="actions">
-            <span>Delete</span>
+            <span onClick={handlerDeletePost}>Delete</span>
             <span>Edit</span>
           </div>
         </header>

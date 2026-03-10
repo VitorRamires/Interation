@@ -12,7 +12,7 @@ export function PostList() {
       setPostsList(getPostsList);
     }
     getPostsHandler();
-  }, []);
+  }, [sortList]);
 
   return (
     <>
@@ -23,6 +23,7 @@ export function PostList() {
             datetime={created_datetime}
             title={title}
             content={content}
+            id={id}
             key={id}
           />
         ))}
