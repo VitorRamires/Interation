@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createPost, getPosts } from "../../../DATA.JS";
+import { createPost } from "../../../DATA.JS";
 import { useUser } from "../../../context/username";
 
 export function useCreatePost() {
@@ -15,9 +15,6 @@ export function useCreatePost() {
     event.preventDefault();
     const { title, content } = postContent;
     await createPost(username, title, content);
-
-    const posts = await getPosts();
-    console.log(posts);
   }
 
   return { handlePostCreation, setPostContent };

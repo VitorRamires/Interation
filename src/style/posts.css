@@ -58,10 +58,17 @@ textarea:focus {
   width: 100%;
   border: 1px solid #999999;
   border-radius: 16px;
+  margin-bottom: 24px;
+  font-size: 18px;
 }
 
 .postcard header {
   border-radius: 14px 14px 0 0;
+  padding: 20px 24px;
+}
+
+.postcard .author {
+  font-weight: bold;
 }
 
 .postcard header,

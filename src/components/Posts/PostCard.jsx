@@ -1,9 +1,13 @@
-export function PostCard() {
+import { formatDistanceToNow } from "date-fns";
+
+export function PostCard({ username, datetime, title, content }) {
+  const formattedDate = formatDistanceToNow(new Date(datetime), { addSuffix: true }).replace("about ", "");
+
   return (
     <>
       <div className="postcard">
         <header>
-          <h3>My First PostCard</h3>
+          <h3>{title}</h3>
           <div className="actions">
             <span>Delete</span>
             <span>Edit</span>
@@ -11,19 +15,10 @@ export function PostCard() {
         </header>
         <div className="postcard-content">
           <div className="postcard-infos">
-            <p className="author">@Author</p>
-            <p  className="datetime">25 minutes later</p>
+            <p className="author">{`@${username}`}</p>
+            <p className="datetime">{formattedDate}</p>
           </div>
-          <p className="text-postcard">
-            Curabitur suscipit suscipit tellus. Phasellus consectetuer
-            vestibulum elit. Pellentesque habitant morbi tristique senectus et
-            netus et malesuada fames ac turpis egestas. Maecenas egestas arcu
-            quis ligula mattis placerat. Duis vel nibh at velit scelerisque
-            suscipit. Duis lobortis massa imperdiet quam. Aenean posuere, tortor
-            sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna
-            dolor sagittis lacus. Fusce a quam. Nullam vel sem. Nullam cursus
-            lacinia erat.
-          </p>
+          <p className="text-postcard">{content}</p>
         </div>
       </div>
     </>
