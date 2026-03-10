@@ -3,7 +3,7 @@ import { useCreatePost } from "./features/createPost";
 export function PostCreated() {
   const { handlePostCreation, setPostContent } = useCreatePost();
 
-  // possível renderização desnecessaria //
+  // Posso reutilizar
   function handleChangeForm(event) {
     const { id, value } = event.target;
     setPostContent((prev) => ({ ...prev, [id]: value }));

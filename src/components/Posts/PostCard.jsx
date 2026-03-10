@@ -1,16 +1,23 @@
 import { formatDistanceToNow } from "date-fns";
-import { DeletePost } from "../../DATA.JS";
+import { useRef } from "react";
+import { DeletePostModal } from "./modals/deleteModal";
+import { EditPostModal } from "./modals/editModal";
 
 export function PostCard({ username, datetime, title, content, id }) {
   const formattedDate = formatDistanceToNow(new Date(datetime), {
     addSuffix: true,
   }).replace("about ", "");
 
-  async function handlerDeletePost () {
-    await DeletePost(id)
+  const dialogDeleteRef = useRef();
+  const dialogEditRef = useRef();
+
+  function openDeleteModal() {
+    dialogDeleteRef.current.showModal();
   }
 
-  
+  function openEditModal() {
+    dialogEditRef.current.showModal();
+  }
 
   return (
     <>
@@ -18,8 +25,8 @@ export function PostCard({ username, datetime, title, content, id }) {
         <header>
           <h3>{title}</h3>
           <div className="actions">
-            <span onClick={handlerDeletePost}>Delete</span>
-            <span>Edit</span>
+            <span onClick={openDeleteModal}>Delete</span>
+            <span onClick={openEditModal}>Edit</span>
           </div>
         </header>
         <div className="postcard-content">
@@ -29,7 +36,14 @@ export function PostCard({ username, datetime, title, content, id }) {
           </div>
           <p className="text-postcard">{content}</p>
         </div>
+        <DeletePostModal id={id} dialogRef={dialogDeleteRef} />
       </div>
+      <EditPostModal
+        id={id}
+        dialogRef={dialogEditRef}
+        title={title}
+        content={content}
+      />
     </>
   );
 }

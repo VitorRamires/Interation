@@ -33,20 +33,6 @@
   margin: 24px 0;
 }
 
-.postCreated .content-post textarea {
-  resize: none;
-  width: 100% !important;
-  height: 74px !important;
-  padding: 10px;
-  border: 1px solid #777777;
-  border-radius: 5px;
-  outline: none;
-  margin-top: 8px;
-}
-
-textarea:focus {
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.349);
-}
 
 .postCreated button {
   width: 120px;
@@ -102,3 +88,7 @@ textarea:focus {
 .actions span {
   cursor: pointer;
 }
+
+
+
+
