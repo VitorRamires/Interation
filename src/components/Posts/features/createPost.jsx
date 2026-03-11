@@ -17,5 +17,5 @@ export function useCreatePost() {
     await createPost(username, title, content);
   }
 
-  return { handlePostCreation, setPostContent };
+  return { handlePostCreation, setPostContent, postContent };
 }

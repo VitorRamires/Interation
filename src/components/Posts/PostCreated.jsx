@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { useCreatePost } from "./features/createPost";
 
 export function PostCreated() {
-  const { handlePostCreation, setPostContent } = useCreatePost();
+  const { handlePostCreation, setPostContent, postContent } = useCreatePost();
+  const [isDisabled, setIsDisabled] = useState(true);
 
-  // Posso reutilizar
   function handleChangeForm(event) {
     const { id, value } = event.target;
-    setPostContent((prev) => ({ ...prev, [id]: value }));
+    const updatedContent = { ...postContent, [id]: value };
+
+    setPostContent(updatedContent);
+    setIsDisabled(!updatedContent.title || !updatedContent.content);
   }
 
   return (
@@ -24,7 +28,13 @@ export function PostCreated() {
           <textarea id="content" onChange={handleChangeForm} />
         </div>
 
-        <button type="submit">Create</button>
+        <button
+          disabled={isDisabled}
+          className={!isDisabled ? "" : "disabled"}
+          type="submit"
+        >
+          Create
+        </button>
       </form>
     </section>
   );

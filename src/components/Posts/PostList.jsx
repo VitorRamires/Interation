@@ -19,7 +19,7 @@ export function PostList() {
       <section className="postslist">
         {sortList.map(({ username, created_datetime, title, content, id }) => (
           <PostCard
-            username={username}
+            author={username}
             datetime={created_datetime}
             title={title}
             content={content}

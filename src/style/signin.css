@@ -20,15 +20,11 @@
 }
 
 
-
 label {
   font-weight: 400;
 }
 
-.signin-page .disabled {
-  background-color: gray;
-  cursor: not-allowed;
-}
+
 
 @media screen and (max-width: 280px) {
   .signin-page h2,

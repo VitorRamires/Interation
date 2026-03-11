@@ -28,7 +28,7 @@ export async function editPost(id, title, content) {
   return data;
 }
 
-export async function DeletePost(id) {
+export async function deletePost(id) {
   await fetch(`${URL_BASE}${id}/`, {
     method: "DELETE",
   });

@@ -72,3 +72,8 @@ button {
 button:not(.disabled):not(dialog button):hover {
   background-color: #4f79ec;
 }
+
+.disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}

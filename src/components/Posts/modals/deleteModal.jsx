@@ -1,4 +1,4 @@
-import { DeletePost } from "../../../DATA.JS";
+import { deletePost } from "../../../DATA.JS";
 
 export function DeletePostModal({ id, dialogRef }) {
   function closeModal() {
@@ -6,7 +6,7 @@ export function DeletePostModal({ id, dialogRef }) {
   }
 
   async function handlerDeletePost() {
-    await DeletePost(id);
+    await deletePost(id);
     dialogRef.current.close();
   }
 

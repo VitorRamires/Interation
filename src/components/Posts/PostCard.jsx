@@ -1,38 +1,35 @@
-import { formatDistanceToNow } from "date-fns";
-import { useRef } from "react";
 import { DeletePostModal } from "./modals/deleteModal";
 import { EditPostModal } from "./modals/editModal";
+import { useUser } from "../../context/username";
+import { usePostModals } from "./modals/usePostModals";
+import { formateDate } from "../../utilities/formatDate";
+import {PostActions} from "../Posts/PostActions"
 
-export function PostCard({ username, datetime, title, content, id }) {
-  const formattedDate = formatDistanceToNow(new Date(datetime), {
-    addSuffix: true,
-  }).replace("about ", "");
+export function PostCard({ author, datetime, title, content, id }) {
+  const { username } = useUser();
+  const { dialogDeleteRef, dialogEditRef, openDeleteModal, openEditModal } =
+    usePostModals();
 
-  const dialogDeleteRef = useRef();
-  const dialogEditRef = useRef();
+  const dateFormatted = formateDate(datetime);
 
-  function openDeleteModal() {
-    dialogDeleteRef.current.showModal();
-  }
-
-  function openEditModal() {
-    dialogEditRef.current.showModal();
-  }
+  const isAuthor = username === author;
+  const buttonsActionsVisible = isAuthor ? (
+    <PostActions onEdit={openEditModal} onDelete={openDeleteModal} />
+  ) : (
+    ""
+  );
 
   return (
     <>
       <div className="postcard">
         <header>
           <h3>{title}</h3>
-          <div className="actions">
-            <span onClick={openDeleteModal}>Delete</span>
-            <span onClick={openEditModal}>Edit</span>
-          </div>
+          {buttonsActionsVisible}
         </header>
         <div className="postcard-content">
           <div className="postcard-infos">
-            <p className="author">{`@${username}`}</p>
-            <p className="datetime">{formattedDate}</p>
+            <p className="author">{`@${author}`}</p>
+            <p className="datetime">{dateFormatted}</p>
           </div>
           <p className="text-postcard">{content}</p>
         </div>

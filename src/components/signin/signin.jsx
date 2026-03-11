@@ -5,8 +5,6 @@ export function Signin({ onEnter }) {
   const { setUsername } = useUser();
   const [input, setInput] = useState("");
 
-
-  // lógica a ser compartilhada por PostCreated //
   const isDisabled = input === "";
 
   function handleSubmit(event) {
