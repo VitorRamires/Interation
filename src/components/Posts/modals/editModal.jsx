@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { editPost } from "../../../DATA.JS";
+import { ListPostContext } from "../../../context/postslists";
 
 export function EditPostModal({ dialogRef, id, title, content }) {
- const [editItem, setEditItem] = useState({
-    title: title,   
-    content: content 
+  const [editItem, setEditItem] = useState({
+    title: title,
+    content: content,
   });
+
+    const { setPostsList } = useContext(ListPostContext);
 
   const closeModal = () => {
     dialogRef.current.close();
   };
 
-  // Posso reutilizar
   function changeEditValue(event) {
     const { id, value } = event.target;
     setEditItem((prev) => ({ ...prev, [id]: value }));
@@ -22,12 +24,14 @@ export function EditPostModal({ dialogRef, id, title, content }) {
     dialogRef.current.close();
 
     const { title, content } = editItem;
-    await editPost(id, title, content);
+    const postEdited = await editPost(id, title, content);
+    setPostsList((prev) => prev.map((post) => post.id === id ? postEdited : post));
   }
 
   return (
     <>
       <dialog ref={dialogRef} className="edit-modal">
+        <h3>Edit Item</h3>
         <form onSubmit={handlerEditPost}>
           <div className="title-post edit-item">
             <label htmlFor="title">Title</label>
@@ -41,12 +45,18 @@ export function EditPostModal({ dialogRef, id, title, content }) {
 
           <div className="content-post edit-item">
             <label htmlFor="content">Content</label>
-            <textarea id="content" value={editItem.content} onChange={changeEditValue} />
+            <textarea
+              id="content"
+              value={editItem.content}
+              onChange={changeEditValue}
+            />
           </div>
 
           <div className="dialog-btns">
             <button onClick={closeModal}>Cancel</button>
-            <button className="edit-btn" type="submit">Edit</button>
+            <button className="edit-btn" type="submit">
+              Edit
+            </button>
           </div>
         </form>
       </dialog>

@@ -2,9 +2,6 @@ import editIcon from "/src/assets/icons/edit-icon.svg";
 import deleteIcon from "/src/assets/icons/delete-icon.svg";
 
 export function PostActions({ onEdit, onDelete }) {
-
-  
-
   return (
     <div className="actions">
       <span onClick={onEdit}>

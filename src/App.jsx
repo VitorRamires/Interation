@@ -3,6 +3,7 @@ import { Signin } from "./components/signin/signin";
 import { PostPanel } from "./components/Posts/PostPanel";
 import { UserProvider } from "./context/username";
 import "./style/style.css";
+import { ListPostProvider } from "./context/postslists";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -10,7 +11,9 @@ function App() {
   return (
     <>
       <UserProvider>
-        {!isLogged ? <Signin onEnter={() => setIsLogged(true)} /> : <PostPanel />}
+        <ListPostProvider>
+          {!isLogged ? <Signin onEnter={() => setIsLogged(true)} /> : <PostPanel />}
+        </ListPostProvider>
       </UserProvider>
     </>
   );

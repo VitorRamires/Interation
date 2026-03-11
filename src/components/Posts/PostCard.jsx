@@ -2,15 +2,16 @@ import { DeletePostModal } from "./modals/deleteModal";
 import { EditPostModal } from "./modals/editModal";
 import { useUser } from "../../context/username";
 import { usePostModals } from "./modals/usePostModals";
-import { formateDate } from "../../utilities/formatDate";
-import {PostActions} from "../Posts/PostActions"
 
-export function PostCard({ author, datetime, title, content, id }) {
+import { PostActions } from "../Posts/PostActions";
+import { formateDate } from "../../utilities/formatDate";
+
+export function PostCard({ author, datetime,  title, content, id }) {
   const { username } = useUser();
   const { dialogDeleteRef, dialogEditRef, openDeleteModal, openEditModal } =
     usePostModals();
 
-  const dateFormatted = formateDate(datetime);
+  const dateFormated = formateDate(datetime)
 
   const isAuthor = username === author;
   const buttonsActionsVisible = isAuthor ? (
@@ -29,18 +30,18 @@ export function PostCard({ author, datetime, title, content, id }) {
         <div className="postcard-content">
           <div className="postcard-infos">
             <p className="author">{`@${author}`}</p>
-            <p className="datetime">{dateFormatted}</p>
+            <p className="datetime">{dateFormated}</p>
           </div>
           <p className="text-postcard">{content}</p>
         </div>
         <DeletePostModal id={id} dialogRef={dialogDeleteRef} />
+        <EditPostModal
+          id={id}
+          dialogRef={dialogEditRef}
+          title={title}
+          content={content}
+        />
       </div>
-      <EditPostModal
-        id={id}
-        dialogRef={dialogEditRef}
-        title={title}
-        content={content}
-      />
     </>
   );
 }

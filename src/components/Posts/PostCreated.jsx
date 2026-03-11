@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useCreatePost } from "./features/createPost";
 
 export function PostCreated() {
+
+  
   const { handlePostCreation, setPostContent, postContent } = useCreatePost();
   const [isDisabled, setIsDisabled] = useState(true);
 

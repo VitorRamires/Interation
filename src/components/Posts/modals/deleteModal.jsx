@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import { deletePost } from "../../../DATA.JS";
+import { ListPostContext } from "../../../context/postslists";
 
 export function DeletePostModal({ id, dialogRef }) {
+  const { setPostsList } = useContext(ListPostContext);
+
   function closeModal() {
     dialogRef.current.close();
   }
 
   async function handlerDeletePost() {
     await deletePost(id);
+    setPostsList((prev) => prev.filter((post) => post.id !== id));
     dialogRef.current.close();
   }
 

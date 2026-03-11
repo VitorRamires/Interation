@@ -3,10 +3,11 @@
   max-width: 100%;
   margin: 0 auto;
   background-color: #ffffff;
+  border-radius: 0 0 16px 16px;
 }
 
 .post-page .content {
-  padding: 0 24px;
+  padding: 0 24px 10px 24px;
 }
 
 .post-page header {
@@ -33,7 +34,6 @@
   margin: 24px 0;
 }
 
-
 .postCreated button {
   width: 120px;
 }
@@ -46,6 +46,9 @@
   border-radius: 16px;
   margin-bottom: 24px;
   font-size: 18px;
+  animation: slideIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  transform: 0.2s;
 }
 
 .postcard header {
@@ -72,10 +75,6 @@
   font-weight: 400;
 }
 
-.postcard span {
-  margin: 0 4px 0 4px;
-}
-
 .postcard .postcard-content {
   padding: 0 24px 24px 24px;
 }
@@ -83,12 +82,60 @@
 .postcard-content .text-postcard {
   margin-top: 16px;
   font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+/* ----- POSTACTIONS ------ */
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.postcard span {
+  margin: 0 4px 0 4px;
 }
 
 .actions span {
   cursor: pointer;
 }
 
+.postcard img {
+  transition: 0.2s;
+  width: 32px;
+  height: auto;
+}
 
+.postcard img:hover {
+  transform: scale(1.05);
+}
 
+/* PAGINATION BUTTONS */
 
+.pagination-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.pagination-btns button {
+  width: 110px;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

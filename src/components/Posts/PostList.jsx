@@ -1,32 +1,39 @@
 import { PostCard } from "../Posts/PostCard";
 import { getPosts } from "../../DATA.JS";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { ListPostContext } from "../../context/postslists";
+import { usePagination } from "../../utilities/pagination";
 
 export function PostList() {
-  const [postsList, setPostsList] = useState([]);
-  const sortList = [...postsList].sort((a, b) => b.data - a.data);
+  const { postsList, setPostsList, setOffset } = useContext(ListPostContext);
+
+  const { loadMorePosts, hasMore } = usePagination();
 
   useEffect(() => {
-    async function getPostsHandler() {
-      const getPostsList = await getPosts();
-      setPostsList(getPostsList);
+    async function initialLoad() {
+      const data = await getPosts(0);
+      setPostsList(data.results);
+      setOffset(5);
     }
-    getPostsHandler();
-  }, [sortList]);
+    initialLoad();
+  }, []);
 
   return (
     <>
       <section className="postslist">
-        {sortList.map(({ username, created_datetime, title, content, id }) => (
+        {postsList.map(({ username, created_datetime, title, content, id }) => (
           <PostCard
             author={username}
             datetime={created_datetime}
             title={title}
             content={content}
             id={id}
-            key={id}
+            key={id + "title"}
           />
         ))}
+        <div className="pagination-btns">
+          {hasMore && <button onClick={loadMorePosts}>Load More</button>}
+        </div>
       </section>
     </>
   );
