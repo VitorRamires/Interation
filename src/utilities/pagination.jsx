@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { getPosts } from "../DATA.JS";
 import { ListPostContext } from "../context/postslists";
 
 export function usePagination() {
   const { offset, setOffset, setPostsList } = useContext(ListPostContext);
-
   const [hasMore, setHasMore] = useState(true);
 
   async function loadMorePosts() {
@@ -14,5 +13,15 @@ export function usePagination() {
     setHasMore(!!data.next);
   }
 
-  return { loadMorePosts, hasMore };
+  const bottomRef = useRef(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && hasMore) loadMorePosts();
+    });
+
+    if (bottomRef.current) observer.observe(bottomRef.current);
+    return () => observer.disconnect();
+  }, [offset, hasMore]);
+
+  return { loadMorePosts, hasMore, bottomRef };
 }

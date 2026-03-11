@@ -6,8 +6,7 @@ import { usePagination } from "../../utilities/pagination";
 
 export function PostList() {
   const { postsList, setPostsList, setOffset } = useContext(ListPostContext);
-
-  const { loadMorePosts, hasMore } = usePagination();
+ const { bottomRef } = usePagination();
 
   useEffect(() => {
     async function initialLoad() {
@@ -32,7 +31,7 @@ export function PostList() {
           />
         ))}
         <div className="pagination-btns">
-          {hasMore && <button onClick={loadMorePosts}>Load More</button>}
+          <div ref={bottomRef}></div>
         </div>
       </section>
     </>
