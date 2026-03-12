@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useUser } from "../../context/username";
 
 export function Signin({ onEnter }) {
-  const { setUsername } = useUser();
   const [input, setInput] = useState("");
+  const { login } = useUser();
 
   const isDisabled = input === "";
 
   function handleSubmit(event) {
     event.preventDefault();
-    setUsername(input);
+    login(input);
     onEnter();
   }
 

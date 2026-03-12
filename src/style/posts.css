@@ -16,6 +16,22 @@
   background-color: #7695ec;
   color: #ffff;
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.post-page header button {
+  margin: 0;
+  background-color: #ffffff;
+  color: black;
+  font-weight: 400;
+}
+
+.post-page header button:hover {
+  color: #ffff;
 }
 
 /* ----------- POSTCREATED  ----------- */

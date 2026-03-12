@@ -1,12 +1,25 @@
 import { createContext, useContext, useState } from "react";
 
-const UserContext = createContext();
+// eslint-disable-next-line react-refresh/only-export-components
+export const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem("username") || "";
+  });
+
+  function login(name) {
+    localStorage.setItem("username", name);
+    setUsername(name);
+  }
+
+  function logout() {
+    localStorage.removeItem("username");
+    setUsername("");
+  }
 
   return (
-    <UserContext.Provider value={{ username, setUsername }}>
+    <UserContext.Provider value={{ username, login, logout }}>
       {children}
     </UserContext.Provider>
   );
