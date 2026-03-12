@@ -5,6 +5,7 @@ import { usePostModals } from "./modals/usePostModals";
 
 import { PostActions } from "../Posts/PostActions";
 import { formateDate } from "../../utilities/formatDate";
+import { LikeButton } from "./features/likes";
 
 export function PostCard({ author, datetime, title, content, id }) {
   const { username } = useUser();
@@ -33,6 +34,7 @@ export function PostCard({ author, datetime, title, content, id }) {
             <p className="datetime">{dateFormated}</p>
           </div>
           <p className="text-postcard">{content}</p>
+          <LikeButton id={id} />
         </div>
         <DeletePostModal id={id} dialogRef={dialogDeleteRef} />
         <EditPostModal
