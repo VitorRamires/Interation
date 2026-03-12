@@ -1,7 +1,7 @@
 <h2>CodeLeap Network</h2>
 <br />
 <h3>🎯 Objetivo</h3>
-Aplicação de feed social onde usuários podem criar, editar e deletar posts, com suporte a paginação via botão de Load More consumindo a API REST da CodeLeap.
+Aplicação de feed social onde usuários podem criar, editar e deletar posts, com suporte a scroll infinito, uso de localStorage para sitema de curtidas e de login, e design responsivo para telas menores. 
 <br />
 <br />
 <h3>🛠️ Construído com:</h3>
@@ -21,6 +21,7 @@ Aplicação de feed social onde usuários podem criar, editar e deletar posts, c
   <li>🗑️ Deleção de posts com remoção imediata da lista</li>
   <li>🔄 Infinite Scroll para os posts carregando de 5 em 5</li>
   <li>🔑 Sistema de login e logout via localStorage </li>
+  <li>👍 Sistema de curtidas para cada post (Like)</li>
 </ul>
 <br />
 <h3>🚀 Como rodar:</h3>
