@@ -20,8 +20,8 @@ Aplicação de feed social onde usuários podem criar, editar e deletar posts, c
   <li>✏️ Edição de posts com atualização local do estado</li>
   <li>🗑️ Deleção de posts com remoção imediata da lista</li>
   <li>📦 Paginação de 5 em 5 posts com botão Load More</li>
-  <li>🚫 Infinite Scroll para os posts</li>
-  <li>🚫 Sistema de login e logout via localStorage </li>
+  <li>🔄 Infinite Scroll para os posts</li>
+  <li>🔑 Sistema de login e logout via localStorage </li>
 </ul>
 <br />
 <h3>🚀 Como rodar:</h3>
