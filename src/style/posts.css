@@ -12,6 +12,8 @@
 
 .post-page header {
   width: 100%;
+  position: sticky;
+  top: 0;
   padding: 20px 37px;
   background-color: #7695ec;
   color: #ffff;
@@ -20,7 +22,8 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 25px;
+  z-index: 1;
 }
 
 .post-page header button {
@@ -154,6 +157,16 @@
   margin-top: 2px;
 }
 
+/* ACCOUNT */
+
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 /* ANIMATIONS */
 
 @keyframes slideIn {
@@ -174,7 +187,7 @@
 }
 
 @media screen and (max-width: 310px) {
-  .postcard header h3 {
-    font-size: 1rem;
+  .post-page header h2 {
+    font-size: 1.2rem;
   }
 }

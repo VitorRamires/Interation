@@ -3,14 +3,17 @@ import { PostList } from "../Posts/PostList";
 import { useUser } from "../../context/username";
 
 export function PostPanel() {
-  const { logout } = useUser();
+  const { logout, username } = useUser();
 
   return (
     <>
       <section className="post-page">
         <header>
           <h2>CodeLeap Network</h2>
-          <button onClick={logout}>Logout</button>
+          <div className="account">
+            <p>User: {username}</p>
+            <button onClick={logout}>Logout</button>
+          </div>
         </header>
         <div className="content">
           <PostCreated />
