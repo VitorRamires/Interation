@@ -6,13 +6,18 @@ import { usePostModals } from "./modals/usePostModals";
 import { PostActions } from "../Posts/PostActions";
 import { formateDate } from "../../utilities/formatDate";
 import { LikeButton } from "./features/likes";
+import { useCreateComment } from "./features/createComment";
+import { useState } from "react";
 
 export function PostCard({ author, datetime, title, content, id }) {
   const { username } = useUser();
   const { dialogDeleteRef, dialogEditRef, openDeleteModal, openEditModal } =
     usePostModals();
 
+  const [commentary, setCommentary] = useState("");
+
   const dateFormated = formateDate(datetime);
+  const { createCommentHandler, commentList } = useCreateComment();
 
   const isAuthor = username === author;
   const buttonsActionsVisible = isAuthor ? (
@@ -21,7 +26,13 @@ export function PostCard({ author, datetime, title, content, id }) {
     ""
   );
 
-  
+  function createNewCommentary({ target }) {
+    setCommentary(target.value);
+  }
+
+  function sendCommentary() {
+    createCommentHandler(commentary, username);
+  }
 
   return (
     <>
@@ -46,7 +57,24 @@ export function PostCard({ author, datetime, title, content, id }) {
           content={content}
         />
         <div className="comments">
-          <p>escrever comentario</p>
+          <p onClick={sendCommentary}>Comment</p>
+          <input
+            onChange={createNewCommentary}
+            type="text"
+            placeholder="comentario aqui"
+            value={commentary}
+          />
+
+          {commentList.map((commentObj, index) => (
+            <div key={index}>
+              <p>
+                <strong>{commentObj.commentAuthor}:</strong>{" "}
+                {commentObj.comment}
+              </p>
+            </div>
+          ))}
+
+          
         </div>
       </div>
     </>
