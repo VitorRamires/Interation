@@ -21,6 +21,8 @@ export function PostCard({ author, datetime, title, content, id }) {
     ""
   );
 
+  
+
   return (
     <>
       <div className="postcard">
@@ -43,6 +45,9 @@ export function PostCard({ author, datetime, title, content, id }) {
           title={title}
           content={content}
         />
+        <div className="comments">
+          <p>escrever comentario</p>
+        </div>
       </div>
     </>
   );
