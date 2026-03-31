@@ -9,6 +9,9 @@ export function useCreateComment() {
       commentId: Date.now(),
       commentAuthor,
     };
+
+    if (!comment) return;
+
     setCommentList((prev) => [...prev, newComment]);
   }
 
