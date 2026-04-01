@@ -1,7 +1,7 @@
 import { useUser } from "../../../context/username";
 import { useState } from "react";
 
-export function CommentsModal({ dialogRef, createComment }) {
+export function CommentsModal({ dialogRef, createComment, contentPost }) {
   const { username } = useUser();
   const [commentary, setCommentary] = useState("");
 
@@ -17,12 +17,12 @@ export function CommentsModal({ dialogRef, createComment }) {
 
   return (
     <dialog ref={dialogRef}>
-      <h2>Commentary</h2>
+      <p className="content-commentPost">{contentPost}</p>
       <div className="comments">
         <textarea
           onChange={createNewCommentary}
           type="text"
-          placeholder="comentario aqui"
+          placeholder="Reply Here!"
           value={commentary}
         />
         <button onClick={sendCommentary}>Reply</button>

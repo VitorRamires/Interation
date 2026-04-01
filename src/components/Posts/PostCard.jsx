@@ -57,6 +57,7 @@ export function PostCard({ author, datetime, title, content, id }) {
         <CommentsModal
           dialogRef={dialogCommentRef}
           createComment={createCommentHandler}
+          contentPost={content}
         />
       </div>
     </>

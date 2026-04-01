@@ -21,7 +21,7 @@ export function Actions({
     <div className="actions">
       {buttonsActionsVisible}
       <span onClick={commentOpenModal}>
-        <img src={commentIcon} alt="icon-delete" />
+        <img src={commentIcon} alt="icon-delete" className="comment-icon" />
       </span>
     </div>
   );

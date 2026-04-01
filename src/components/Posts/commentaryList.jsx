@@ -4,7 +4,7 @@ export function CommentaryList({ commentList }) {
       {commentList.map((commentObj, index) => (
         <div className="comments" key={index}>
           <p>
-            {commentObj.commentAuthor}: {commentObj.comment}
+            <strong>{commentObj.commentAuthor}</strong>: {commentObj.comment}
           </p>
         </div>
       ))}
