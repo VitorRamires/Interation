@@ -1,32 +1,40 @@
 import { DeletePostModal } from "./modals/deleteModal";
 import { EditPostModal } from "./modals/editModal";
-import { useUser } from "../../context/username";
-import { usePostModals } from "./modals/usePostModals";
 
-import { PostActions } from "../Posts/PostActions";
+import { usePostModals } from "./modals/usePostModals";
 import { formateDate } from "../../utilities/formatDate";
 import { LikeButton } from "./features/likes";
-import { Comments } from "./modals/comments.jsx";
+import { CommentsModal } from "./modals/commentsModal.jsx";
+import { CommentaryList } from "./commentaryList.jsx";
+
+import { useCreateComment } from "./features/createComment.jsx";
+import { Actions } from "./actions.jsx";
 
 export function PostCard({ author, datetime, title, content, id }) {
-  const { username } = useUser();
-  const { dialogDeleteRef, dialogEditRef, openDeleteModal, openEditModal } =
-    usePostModals();
+  const { createCommentHandler, commentList } = useCreateComment();
+
+  const {
+    dialogDeleteRef,
+    dialogEditRef,
+    dialogCommentRef,
+    openDeleteModal,
+    openEditModal,
+    openCommentModal,
+  } = usePostModals();
 
   const dateFormated = formateDate(datetime);
 
-  const isAuthor = username === author;
-  const buttonsActionsVisible = isAuthor ? (
-    <PostActions onEdit={openEditModal} onDelete={openDeleteModal} />
-  ) : (
-    ""
-  );
   return (
     <>
       <div className="postcard">
         <header>
           <h3>{title}</h3>
-          {buttonsActionsVisible}
+          <Actions
+            author={author}
+            deleteOpenModal={openDeleteModal}
+            editOpenModal={openEditModal}
+            commentOpenModal={openCommentModal}
+          />
         </header>
         <div className="postcard-content">
           <div className="postcard-infos">
@@ -36,6 +44,9 @@ export function PostCard({ author, datetime, title, content, id }) {
           <p className="text-postcard">{content}</p>
           <LikeButton id={id} />
         </div>
+        <div className="commentary-list">
+          <CommentaryList commentList={commentList} />
+        </div>
         <DeletePostModal id={id} dialogRef={dialogDeleteRef} />
         <EditPostModal
           id={id}
@@ -43,7 +54,10 @@ export function PostCard({ author, datetime, title, content, id }) {
           title={title}
           content={content}
         />
-        <Comments />
+        <CommentsModal
+          dialogRef={dialogCommentRef}
+          createComment={createCommentHandler}
+        />
       </div>
     </>
   );

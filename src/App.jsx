@@ -1,4 +1,4 @@
-import { Signin } from "./components/signin/signin";
+import { Signin } from "./components/signin";
 import { PostPanel } from "./components/Posts/PostPanel";
 import { UserProvider, useUser } from "./context/username";
 import "./style/style.css";

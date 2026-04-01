@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUser } from "../../context/username";
+import { useUser } from "../context/username";
 
 export function Signin({ onEnter }) {
   const [input, setInput] = useState("");
