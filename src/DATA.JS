@@ -1,4 +1,4 @@
-export const URL_BASE = `https://dev.codeleap.co.uk/careerss/`;
+export const URL_BASE = `https://dev.codeleap.co.uk/careers/`;
 
 export async function getPosts(offset) {
 
