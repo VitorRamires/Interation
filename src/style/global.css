@@ -77,3 +77,17 @@ button:not(.disabled):not(dialog button):hover {
   background-color: gray;
   cursor: not-allowed;
 }
+
+.error {
+  background-color: rgb(255, 90, 90);
+  text-align: center;
+  padding: 35px;
+  border-radius: 5px;
+  color: #ffff;
+}
+
+.error img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 30px;
+}
