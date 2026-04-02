@@ -1,9 +1,18 @@
-export const URL_BASE = `https://dev.codeleap.co.uk/careers/`;
+export const URL_BASE = `https://dev.codeleap.co.uk/careerss/`;
 
 export async function getPosts(offset) {
-  const response = await fetch(`${URL_BASE}?limit=5&offset=${offset}`);
-  const data = await response.json();
-  return data;
+
+  try {
+    const response = await fetch(`${URL_BASE}?limit=5&offset=${offset}`);
+    if(!response.ok) {
+      throw new Error ("Failed to fechting Data with back-end")
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error 
+  }
+
 }
 export async function createPost(username, title, content) {
   const response = await fetch(URL_BASE, {
